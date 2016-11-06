@@ -43,4 +43,22 @@ public class FoodService implements IFoodService{
 		return foodDao.findFoodById(fId);
 	}
 
+	/**
+	 * 前台页面，
+	 * 查找所有菜品，分页呈现
+	 */
+	public List<Food> findAllFoodByPage(int m, int n) {
+		// TODO Auto-generated method stub
+		return foodDao.findAllFoodByPage(m, n);
+	}
+
+	/**
+	 * 查找所有菜品数量
+	 */
+	public int findAllFoodCount() {
+		// TODO Auto-generated method stub
+		return foodDao.findAllFoodCount();
+	}
+
+	
 }

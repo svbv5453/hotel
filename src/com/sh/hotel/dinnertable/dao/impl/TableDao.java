@@ -2,6 +2,7 @@ package com.sh.hotel.dinnertable.dao.impl;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -11,6 +12,8 @@ import cn.itcast.jdbc.TxQueryRunner;
 
 import com.sh.hotel.dinnertable.dao.ITableDao;
 import com.sh.hotel.dinnertable.domain.Table;
+import com.sh.hotel.utils.TableStatus;
+
 
 /**
  * 餐桌model层实现
@@ -25,8 +28,11 @@ import com.sh.hotel.dinnertable.domain.Table;
  */
 public class TableDao implements ITableDao{
 
+	
+
 	//使用其对数据库进行操作
 	private QueryRunner qr = new TxQueryRunner();
+	private static Logger log = Logger.getLogger(TableDao.class.toString());
 	
 	public void addTable(Table table) {
 		// TODO Auto-generated method stub
@@ -77,10 +83,32 @@ public class TableDao implements ITableDao{
 		// TODO Auto-generated method stub
 		String sql = "select * from dinnertable where tId = ?";
 		try {
-			return qr.query(sql, tId, new BeanHandler<Table>(Table.class));
+			return qr.query(sql, new BeanHandler<Table>(Table.class), tId);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+		
+	}
+	/**
+	 * 前台页面实现类
+	 * 查询未预定的餐桌
+	 */
+	
+	public List<Table> findAllTableNoUse(TableStatus ts) {
+		// TODO Auto-generated method stub
+		String sql = "select * from dinnertable where tableStatus = ?";
+		
+		try {
+			
+			return qr.query(sql, new BeanListHandler<Table>(Table.class), ts);
+			
+			 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	//@test
+	public void demo(){
 		
 	}
 

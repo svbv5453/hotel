@@ -19,5 +19,13 @@ public interface IFoodService {
 	void updateFood(Food food);
 	List<Map<String, Object>> findAll();
 	Map<String, Object> findFoodById(int fId);
+	
+	/**
+	 * 前台页面
+	 * 查找所有菜品进行分页
+	 * 查找所有菜品的数量
+	 */
+	List<Food> findAllFoodByPage(int m, int n);
+	int findAllFoodCount();
 
 }

@@ -3,6 +3,7 @@ package com.sh.hotel.dinnertable.service;
 import java.util.List;
 
 import com.sh.hotel.dinnertable.domain.Table;
+import com.sh.hotel.utils.TableStatus;
 
 /**
  * table业务逻辑处理层接口
@@ -23,5 +24,11 @@ public interface ITableService {
 	void updateTable(Table table);
 	List<Table> findAllTable();
 	Table findTableById(int tId);
+	
+	/**
+	 * 前台页面
+	 * 查找所有未预定餐桌
+	 */
+	List<Table> findAllTableNoUse();
 
 }

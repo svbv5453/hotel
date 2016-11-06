@@ -22,6 +22,15 @@ public interface IFoodDao {
 	void updateFood(Food food);
 	List<Map<String, Object>> findAllFood();
 	Map<String, Object> findFoodById(int fId);
+	/**
+	 * 前台页面，
+	 * 分页查询菜品
+	 * @param m
+	 * @param n
+	 * @return
+	 */
+	List<Food> findAllFoodByPage(int m, int n);
+	int findAllFoodCount();
 	
 	
 

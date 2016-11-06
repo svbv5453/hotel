@@ -10,6 +10,7 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import cn.itcast.commons.CommonUtils;
 import cn.itcast.jdbc.TxQueryRunner;
@@ -107,5 +108,48 @@ public class FoodDao implements IFoodDao{
 		}
 		
 	}
+
+	public List<Food> findAllFoodByPage(int m, int n) {
+		// TODO Auto-generated method stub
+		String sql = "select * from food limit ?,?";
+		//m为起始的数，n为要每页要显示的个数
+		int count = m * n;
+		Object[] param = {count, n};
+		try {
+			List<Food> foods = qr.query(sql, new BeanListHandler<Food>(Food.class), count, n);
+			for (Food food : foods) {
+				log.info("数据库查找菜品" + food.toString());
+			}
+			 return foods;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e);
+		}
+		
+		
+	}
+
+	/**
+	 * 查找所有的菜品数
+	 */
+	public int findAllFoodCount() {
+		// TODO Auto-generated method stub
+		String sql = "select count(*) from food";
+		
+		try {
+			
+			long count = qr.query(sql, new ScalarHandler<Integer>());
+			
+			
+			log.info("count:" + count);
+			return Integer.parseInt(String.valueOf(count));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e);
+		}
+	}
+
+	
+	
 
 }

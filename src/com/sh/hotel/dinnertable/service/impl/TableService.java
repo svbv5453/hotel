@@ -5,6 +5,7 @@ import java.util.List;
 import com.sh.hotel.dinnertable.dao.impl.TableDao;
 import com.sh.hotel.dinnertable.domain.Table;
 import com.sh.hotel.dinnertable.service.ITableService;
+import com.sh.hotel.utils.TableStatus;
 
 /**
  * table业务逻辑处理实现类
@@ -43,5 +44,11 @@ public class TableService implements ITableService{
 		// TODO Auto-generated method stub
 		return tableDao.findTableById(tId);
 	}
+
+	public List<Table> findAllTableNoUse() {
+		// TODO Auto-generated method stub
+		return tableDao.findAllTableNoUse(TableStatus.FREE);
+	}
+	
 
 }

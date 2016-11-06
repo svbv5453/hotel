@@ -97,9 +97,9 @@
 									
 									<img style='max-width:68px;width:68px;width:expression(width>68?"68px":width "px");max-width: 68px;' 
 									src="${pageContext.request.contextPath }/upload/${requestScope.food.img}">
-									<input type="hidden" name="img" value="${pageContext.request.contextPath }/upload/${requestScope.food.img}">
+									<input type="hidden" name="img" value="">
 								
-								<input type="file" name="img"/> *
+								<input type="file" name="img" /> *
 							</td>
 						</tr>
 					</table>
